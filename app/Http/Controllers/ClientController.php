@@ -26,6 +26,6 @@ class ClientController extends Controller
 
     public function list()
     {
-        return view('client.list',['clients' => Client::all()->toJson()]);
+        return view('client.list',['clients' => Client::with('products')->get()->toJson()]);
     }
 }
