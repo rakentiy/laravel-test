@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/client/list', [ClientController::class,'list'])->name('client-list');
+
+Route::get('/client/add', function () {
+    return view('client.add');
+})->name('client-form');
+
+Route::post('/client/add', [ClientController::class,'add_client']);
+
+Route::get('/currency/load',[\App\Http\Controllers\CurrencyController::class,'load'])->name('currency-load');
+Route::get('/currency/list',[\App\Http\Controllers\CurrencyController::class,'list'])->name('currency-list');
