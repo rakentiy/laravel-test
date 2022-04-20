@@ -20,7 +20,8 @@ class CurrencyController extends Controller
             $callback = fn(string $k, string $v): array => ["short_name" => $k, "country" => $v];
             $data = array_map($callback, array_keys($content), array_values($content));
 
-            DB::table('currencies')->insert($data);
+            Currency::insert($data);
+            //DB::table('currencies')->insert($data);
         }
 
         return redirect()->route('currency-list');
